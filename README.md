@@ -35,7 +35,7 @@ Authorization is enforced by the backend; the UI reads roles from `/api/auth/me`
 ## Build & deploy
 
 ```bash
-npm run build      # production build (Cloudflare Workers target via wrangler.jsonc)
+npm run build      # production build (Nitro/Vercel output)
 ```
 
-`wrangler.jsonc` targets Cloudflare Workers; deploy with `wrangler deploy` if you use that platform, or serve the built output from any static host that supports SSR per your setup.
+The application is deployed on Vercel using TanStack Start and the Nitro Vite plugin (`vercel.json`). Configure `VITE_API_BASE_URL` in Vercel's Environment Variables with the URL of your deployed Render backend.

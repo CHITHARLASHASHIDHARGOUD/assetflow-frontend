@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import { defineConfig, loadEnv } from "vite";
-import { cloudflare } from "@cloudflare/vite-plugin";
+import { nitro } from "nitro/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -180,10 +180,6 @@ function routeTreeJsCleaner() {
 }
 
 export default defineConfig(({ command, mode }) => {
-  // Use Cloudflare Workers plugin for builds (produces worker output)
-  // Skip for dev server (command=serve) since workerd runtime isn't available
-  const useCloudflare = command === "build";
-
   // Load VITE_ env vars and define them for SSR
   const env = loadEnv(mode, process.cwd(), "VITE_");
   const envDefine = {};
@@ -208,8 +204,8 @@ export default defineConfig(({ command, mode }) => {
       devClientErrorLogger(),
       devServerFnErrorLogger(),
       routeTreeJsCleaner(),
-      ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
       tanstackStart(),
+      nitro(),
       viteReact(),
       mode === "development" && componentTagger(),
     ].filter(Boolean),
