@@ -1,6 +1,6 @@
 # AssetFlow — Frontend
 
-React 19 + TanStack Start (Vite 7, Tailwind CSS v4) front end for the AssetFlow asset-management app. Talks to the standalone Spring Boot + MySQL backend (`assetflow-api.zip`).
+React 19  (Vite 7, Tailwind CSS v4) front end for the AssetFlow asset-management app. Talks to the standalone Spring Boot + MySQL backend (`assetflow-api.zip`).
 
 ## Requirements
 
